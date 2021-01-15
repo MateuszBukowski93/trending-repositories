@@ -1,15 +1,9 @@
-async function getRepos() {
-  let data = await fetch(
-    "https://private-anon-3e268db977-githubtrendingapi.apiary-mock.com/repositories?language=javascript&since=daily"
-  );
-  let repos = await data.json();
+import { mainTheme } from './theme/mainTheme';
+import { ThemeProvider } from 'styled-components';
 
-  console.log(repos);
-}
 function App() {
-  getRepos();
   return (
-    <ThemeProvider theme={}>
+    <ThemeProvider theme={mainTheme}>
       <div></div>
     </ThemeProvider>
   );
