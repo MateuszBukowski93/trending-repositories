@@ -1,11 +1,8 @@
-export async function getRepos({
-  language = 'javascript',
-  since = 'daily',
-}: ApiOptions) {
-  let data = await fetch(
+export async function getRepos(language: string, since: string) {
+  const data = await fetch(
     `http://localhost:8000/repositories?language=${language}&since=${since}`
   );
-  let repos = await data.json();
+  const repos = await data.json();
 
-  console.log(repos);
+  return repos;
 }

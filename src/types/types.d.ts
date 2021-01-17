@@ -20,3 +20,16 @@ interface ApiOptions {
   language: string;
   since: 'daily' | 'weekly' | 'monthly';
 }
+
+interface RepositoriesStore {
+  repos: Repository[];
+  updateRepos: (repos: Repository[]) => void;
+  language: string;
+  updateLanguage: (language: string) => void;
+  since: string;
+  updateSince: (since: string) => void;
+}
+interface ProgramingLanguage {
+  urlParam: string;
+  name: string;
+}

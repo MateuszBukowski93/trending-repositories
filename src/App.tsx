@@ -1,11 +1,15 @@
 import { mainTheme } from './theme/mainTheme';
 import { ThemeProvider } from 'styled-components';
+import AppContainer from './components/AppContainer';
+import NewStore from './store/RepositoriesStore';
 
 function App() {
   return (
-    <ThemeProvider theme={mainTheme}>
-      <div></div>
-    </ThemeProvider>
+    <NewStore>
+      <ThemeProvider theme={mainTheme}>
+        <AppContainer />
+      </ThemeProvider>
+    </NewStore>
   );
 }
 
