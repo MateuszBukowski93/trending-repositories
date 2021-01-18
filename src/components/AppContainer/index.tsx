@@ -8,12 +8,15 @@ import styled from 'styled-components';
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  flex: 1;
   min-height: 100vh;
 `;
 const ContentContainer = styled.div`
-  padding: 15px 30px;
-  height: 100%;
+  padding: 15px 10px;
+  flex: 1;
+  @media (min-width: ${({ theme }) => theme.screenSizeWidth.extraSmall}) {
+    padding: 15px 30px;
+  }
 `;
 const AppContainer = () => {
   return (

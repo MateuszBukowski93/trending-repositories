@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
+import { StoreContext } from '../../../store/RepositoriesStore';
 import sortIcon from '../../../assets/svg/sortIcon.svg';
+import { observer } from 'mobx-react';
 
 const StyledTable = styled.table`
   border-radius: ${({ theme }) => theme.borderRadius};
@@ -14,7 +16,7 @@ const StyledTable = styled.table`
 `;
 const Icon = styled.img<{ sortLowToHigh: boolean; src: string }>`
   transform: ${({ sortLowToHigh }) =>
-    sortLowToHigh ? 'rotate(0.5turn)' : 'rotate(0)'};
+    sortLowToHigh ? 'rotate(0)' : 'rotate(0.5turn)'};
   transition: transform 300ms;
   width: 20px;
   margin-left: 10px;
@@ -25,8 +27,13 @@ const TableHeaderTextWithIcon = styled.span`
   align-items: center;
   cursor: pointer;
 `;
-const TableHeader = () => {
+const TableHeader = observer(() => {
   const [sortLowToHigh, setSortLowToHigh] = useState(true);
+  const store = useContext<RepositoriesStore>(StoreContext);
+  useEffect(() => {
+    store.setSortLowToHigh(sortLowToHigh);
+  }, [sortLowToHigh, store]);
+
   return (
     <StyledTable>
       <span>Author</span>
@@ -40,6 +47,6 @@ const TableHeader = () => {
       </TableHeaderTextWithIcon>
     </StyledTable>
   );
-};
+});
 
 export default TableHeader;

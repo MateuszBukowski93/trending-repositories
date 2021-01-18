@@ -4,7 +4,7 @@ import { StoreContext } from '../../../store/RepositoriesStore';
 
 const Select = () => {
   const store = useContext<RepositoriesStore>(StoreContext);
-  const [language, setLanguage] = useState(store.language);
+  const [language, setLanguage] = useState<string>(localStorage.language);
   const [languageOptions, setLanguageOptions] = useState<ProgramingLanguage[]>(
     []
   );

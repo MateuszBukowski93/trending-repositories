@@ -28,6 +28,8 @@ interface RepositoriesStore {
   updateLanguage: (language: string) => void;
   since: string;
   updateSince: (since: string) => void;
+  sortLowToHigh: boolean;
+  setSortLowToHigh: (sortLowToHigh: boolean) => void;
 }
 interface ProgramingLanguage {
   urlParam: string;

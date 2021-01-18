@@ -7,26 +7,35 @@ const Label = styled.label`
   font-size: ${({ theme }) => theme.fontSize.medium};
   color: ${({ theme }) => theme.colors.primaryDark};
   cursor: pointer;
+  padding: 5px;
+  @media (min-width: ${({ theme }) => theme.screenSizeWidth.extraSmall}) {
+    font-size: ${({ theme }) => theme.fontSize.medium};
+    padding: 15px 10px;
+  }
 `;
 const InputWithLabel = styled.div`
   display: flex;
   align-items: center;
   margin: 10px 10px 10px 0;
 `;
-const ButtonsContainer = styled.div`
+const CheckboxesContainer = styled.div`
   display: flex;
+  flex-direction: column;
+  @media (min-width: ${({ theme }) => theme.screenSizeWidth.extraSmall}) {
+    flex-direction: row;
+  }
 `;
-const RadioButtons = () => {
+const Checkboxes = () => {
   const store = useContext<RepositoriesStore>(StoreContext);
-  const [since, setSince] = useState<string>(store.since);
+  const [since, setSince] = useState<string>(localStorage.since);
   useEffect(() => {
     store.updateSince(since);
   }, [since, store]);
   return (
-    <ButtonsContainer>
+    <CheckboxesContainer>
       <InputWithLabel>
         <input
-          type='radio'
+          type='checkbox'
           name='since'
           id='daily'
           value='daily'
@@ -37,7 +46,7 @@ const RadioButtons = () => {
       </InputWithLabel>
       <InputWithLabel>
         <input
-          type='radio'
+          type='checkbox'
           name='since'
           id='weekly'
           value='weekly'
@@ -48,7 +57,7 @@ const RadioButtons = () => {
       </InputWithLabel>
       <InputWithLabel>
         <input
-          type='radio'
+          type='checkbox'
           name='since'
           id='monthly'
           value='monthly'
@@ -57,8 +66,8 @@ const RadioButtons = () => {
         />
         <Label htmlFor='monthly'>Monthly</Label>
       </InputWithLabel>
-    </ButtonsContainer>
+    </CheckboxesContainer>
   );
 };
 
-export default RadioButtons;
+export default Checkboxes;

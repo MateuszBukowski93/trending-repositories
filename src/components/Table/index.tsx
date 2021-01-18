@@ -5,10 +5,11 @@ import styled from 'styled-components';
 import TableHeader from './TableHeader';
 import { StoreContext } from '../../store/RepositoriesStore';
 import { observer } from 'mobx-react';
+import { toJS } from 'mobx';
+import { sortHighToLowFunc, sortLowToHighFunc } from '../../utilities/helpers';
 
 const StyledTable = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius};
-  min-height: 300px;
   width: 100%;
 `;
 const List = styled.ul`
@@ -28,9 +29,11 @@ const Table = observer(() => {
     <StyledTable>
       <TableHeader />
       <List>
-        {store.repos.map((item) => (
-          <TableItem item={item} key={item.name} />
-        ))}
+        {toJS(store.repos)
+          .sort(store.sortLowToHigh ? sortLowToHighFunc : sortHighToLowFunc)
+          .map((item) => (
+            <TableItem item={item} key={item.name} />
+          ))}
       </List>
     </StyledTable>
   );

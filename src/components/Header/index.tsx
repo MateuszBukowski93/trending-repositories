@@ -13,6 +13,7 @@ const Title = styled.h1`
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSize.large};
   margin: 0;
+  padding: 15px 10px;
 `;
 const Header = () => {
   return (
