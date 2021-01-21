@@ -3,6 +3,7 @@ interface RepoAuthor {
   href: string;
   avatar: string;
 }
+
 interface Repository {
   author: string;
   name: string;
@@ -16,21 +17,22 @@ interface Repository {
   currentPeriodStars: number;
   builtBy: RepoAuthor;
 }
-interface ApiOptions {
-  language: string;
-  since: 'daily' | 'weekly' | 'monthly';
+
+interface ReposStore {
+  repos: Repository[];
 }
 
-interface RepositoriesStore {
-  repos: Repository[];
-  updateRepos: (repos: Repository[]) => void;
+interface FilterStore {
   language: string;
-  updateLanguage: (language: string) => void;
   since: string;
-  updateSince: (since: string) => void;
   sortLowToHigh: boolean;
-  setSortLowToHigh: (sortLowToHigh: boolean) => void;
 }
+
+interface RootStore {
+  filtersStore: FiltersStore;
+  reposStore: ReposStore;
+}
+
 interface ProgramingLanguage {
   urlParam: string;
   name: string;
