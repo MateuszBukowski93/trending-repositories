@@ -1,9 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { StoreContext } from '../../../store/RepositoriesStore';
+import { StoreContext } from '../../store/RepositoriesStore';
 import styled from 'styled-components';
 
 const Label = styled.label`
-  margin-left: 10px;
   font-size: ${({ theme }) => theme.fontSize.medium};
   color: ${({ theme }) => theme.colors.primaryDark};
   cursor: pointer;
@@ -13,11 +12,13 @@ const Label = styled.label`
     padding: 15px 10px;
   }
 `;
+
 const InputWithLabel = styled.div`
   display: flex;
   align-items: center;
   margin: 10px 10px 10px 0;
 `;
+
 const CheckboxesContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -25,12 +26,15 @@ const CheckboxesContainer = styled.div`
     flex-direction: row;
   }
 `;
+
 const Checkboxes = () => {
   const store = useContext<RepositoriesStore>(StoreContext);
   const [since, setSince] = useState<string>(localStorage.since);
+
   useEffect(() => {
     store.updateSince(since);
   }, [since, store]);
+
   return (
     <CheckboxesContainer>
       <InputWithLabel>

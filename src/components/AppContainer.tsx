@@ -1,9 +1,9 @@
 import React from 'react';
-import Footer from '../Footer';
-import Header from '../Header';
-import Table from '../Table';
-import Filters from '../Filters';
 import styled from 'styled-components';
+import Footer from './Footer';
+import Header from './Header';
+import Table from './Table';
+import Filters from './Filters';
 
 const MainContainer = styled.div`
   display: flex;
@@ -11,6 +11,7 @@ const MainContainer = styled.div`
   flex: 1;
   min-height: 100vh;
 `;
+
 const ContentContainer = styled.div`
   padding: 15px 10px;
   flex: 1;
@@ -18,17 +19,16 @@ const ContentContainer = styled.div`
     padding: 15px 30px;
   }
 `;
-const AppContainer = () => {
-  return (
-    <MainContainer>
-      <Header />
-      <ContentContainer>
-        <Filters />
-        <Table />
-      </ContentContainer>
-      <Footer />
-    </MainContainer>
-  );
-};
+
+const AppContainer = () => (
+  <MainContainer>
+    <Header />
+    <ContentContainer>
+      <Filters />
+      <Table />
+    </ContentContainer>
+    <Footer />
+  </MainContainer>
+);
 
 export default AppContainer;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { getProgramingLanguages } from '../../../api/getProgramingLanguages';
-import { StoreContext } from '../../../store/RepositoriesStore';
+import { getProgramingLanguages } from '../../api/getProgramingLanguages';
+import { StoreContext } from '../../store/RepositoriesStore';
 
 const Select = () => {
   const store = useContext<RepositoriesStore>(StoreContext);
@@ -8,11 +8,13 @@ const Select = () => {
   const [languageOptions, setLanguageOptions] = useState<ProgramingLanguage[]>(
     []
   );
+
   useEffect(() => {
     getProgramingLanguages().then((languages: ProgramingLanguage[]) => {
       setLanguageOptions(languages);
     });
   }, []);
+
   return (
     <div>
       <select

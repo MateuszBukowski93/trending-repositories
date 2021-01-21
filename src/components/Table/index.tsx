@@ -12,13 +12,16 @@ const StyledTable = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius};
   width: 100%;
 `;
+
 const List = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
 `;
+
 const Table = observer(() => {
   const store = useContext<RepositoriesStore>(StoreContext);
+
   useEffect(() => {
     getRepos(store.language, store.since).then((repos: Repository[]) => {
       store.updateRepos(repos);

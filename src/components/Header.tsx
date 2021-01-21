@@ -9,18 +9,18 @@ const StyledHeader = styled.header`
   justify-content: center;
   align-items: center;
 `;
+
 const Title = styled.h1`
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSize.large};
   margin: 0;
   padding: 15px 10px;
 `;
-const Header = () => {
-  return (
-    <StyledHeader>
-      <Title>Trending Repositories</Title>
-    </StyledHeader>
-  );
-};
+
+const Header = () => (
+  <StyledHeader>
+    <Title>Trending Repositories</Title>
+  </StyledHeader>
+);
 
 export default Header;

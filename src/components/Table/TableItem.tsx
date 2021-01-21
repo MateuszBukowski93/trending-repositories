@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 const Item = styled.li`
   display: flex;
   justify-content: space-between;
@@ -7,7 +8,6 @@ const Item = styled.li`
   padding: 15px 40px;
   color: ${({ theme }) => theme.colors.primary};
   font-weight: 600;
-
   cursor: pointer;
   transition: all 300ms;
   border-bottom: 1px solid ${({ theme }) => theme.colors.primary};
@@ -22,13 +22,12 @@ const Item = styled.li`
 interface ITableItem {
   item: Repository;
 }
-const TableItem = ({ item }: ITableItem) => {
-  return (
-    <Item>
-      <span>{item.author}</span>
-      <span>{item.stars}</span>
-    </Item>
-  );
-};
+
+const TableItem = ({ item }: ITableItem) => (
+  <Item>
+    <span>{item.author}</span>
+    <span>{item.stars}</span>
+  </Item>
+);
 
 export default TableItem;

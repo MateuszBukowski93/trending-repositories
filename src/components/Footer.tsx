@@ -7,8 +7,6 @@ const StyledFooter = styled.footer`
   background-color: ${({ theme }) => theme.colors.primaryDark};
 `;
 
-const Footer = () => {
-  return <StyledFooter />;
-};
+const Footer = () => <StyledFooter />;
 
 export default Footer;

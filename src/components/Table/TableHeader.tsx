@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
-import { StoreContext } from '../../../store/RepositoriesStore';
-import sortIcon from '../../../assets/svg/sortIcon.svg';
 import { observer } from 'mobx-react';
+import { StoreContext } from '../../store/RepositoriesStore';
+import sortIcon from '../../assets/svg/sortIcon.svg';
 
 const StyledTable = styled.table`
   border-radius: ${({ theme }) => theme.borderRadius};
@@ -14,6 +14,7 @@ const StyledTable = styled.table`
   color: ${({ theme }) => theme.colors.white};
   font-weight: 900;
 `;
+
 const Icon = styled.img<{ sortLowToHigh: boolean; src: string }>`
   transform: ${({ sortLowToHigh }) =>
     sortLowToHigh ? 'rotate(0)' : 'rotate(0.5turn)'};
@@ -21,15 +22,18 @@ const Icon = styled.img<{ sortLowToHigh: boolean; src: string }>`
   width: 20px;
   margin-left: 10px;
 `;
+
 const TableHeaderTextWithIcon = styled.span`
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
 `;
+
 const TableHeader = observer(() => {
   const [sortLowToHigh, setSortLowToHigh] = useState(true);
   const store = useContext<RepositoriesStore>(StoreContext);
+
   useEffect(() => {
     store.setSortLowToHigh(sortLowToHigh);
   }, [sortLowToHigh, store]);
