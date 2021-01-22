@@ -4,7 +4,7 @@ export const DateRanges = {
   MONTHLY: 'monthly',
 };
 
-export const AppCaptions = {
+export const ColumnNames = {
   AUTHOR: 'Author',
   STARS: 'Stars',
 };

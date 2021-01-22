@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { observer } from 'mobx-react';
 import sortIcon from '../../assets/svg/sortIcon.svg';
-import { AppCaptions } from '../../constants';
+import { ColumnNames } from '../../constants';
 import rootStore from '../../stores/RootStore';
 
 const StyledTable = styled.table`
@@ -33,7 +33,7 @@ const TableHeaderTextWithIcon = styled.span`
 
 const TableHeader = observer(() => (
   <StyledTable>
-    <span>{AppCaptions.AUTHOR}</span>
+    <span>{ColumnNames.AUTHOR}</span>
     <TableHeaderTextWithIcon
       onClick={() => {
         rootStore.reposStore.setSortLowToHigh(
@@ -41,7 +41,7 @@ const TableHeader = observer(() => (
         );
       }}
     >
-      {AppCaptions.STARS}
+      {ColumnNames.STARS}
       <Icon
         sortLowToHigh={rootStore.reposStore.sortLowToHigh}
         src={sortIcon}
