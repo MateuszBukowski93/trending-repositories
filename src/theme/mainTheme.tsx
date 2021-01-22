@@ -5,11 +5,7 @@ export const mainTheme: DefaultTheme = {
     primary: '#4196B4',
     primaryLight: '#96C7D9',
     primaryDark: '#25566A',
-    secondary: '#FFD20A',
-    tertiary: '#E2856E',
-    gray: '#6A7C85',
-    grayLight: '#BBC4C9',
-    grayDark: '#242A2D',
+    secondary: '#E2856E',
     white: '#ffffff',
   },
   fontSize: {

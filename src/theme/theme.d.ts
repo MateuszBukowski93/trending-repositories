@@ -7,10 +7,6 @@ declare module 'styled-components' {
       primaryLight: string;
       primaryDark: string;
       secondary: string;
-      tertiary: string;
-      gray: string;
-      grayLight: string;
-      grayDark: string;
       white: string;
     };
     fontSize: {

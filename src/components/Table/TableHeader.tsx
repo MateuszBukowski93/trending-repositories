@@ -1,8 +1,9 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { observer } from 'mobx-react';
-import { StoreContext } from '../../store/RepositoriesStore';
 import sortIcon from '../../assets/svg/sortIcon.svg';
+import { AppCaptions } from '../../constants';
+import rootStore from '../../stores/RootStore';
 
 const StyledTable = styled.table`
   border-radius: ${({ theme }) => theme.borderRadius};
@@ -30,27 +31,23 @@ const TableHeaderTextWithIcon = styled.span`
   cursor: pointer;
 `;
 
-const TableHeader = observer(() => {
-  const [sortLowToHigh, setSortLowToHigh] = useState(true);
-  const store = useContext<RepositoriesStore>(StoreContext);
-
-  useEffect(() => {
-    store.setSortLowToHigh(sortLowToHigh);
-  }, [sortLowToHigh, store]);
-
-  return (
-    <StyledTable>
-      <span>Author</span>
-      <TableHeaderTextWithIcon
-        onClick={() => {
-          setSortLowToHigh(!sortLowToHigh);
-        }}
-      >
-        Stars
-        <Icon sortLowToHigh={sortLowToHigh} src={sortIcon}></Icon>
-      </TableHeaderTextWithIcon>
-    </StyledTable>
-  );
-});
+const TableHeader = observer(() => (
+  <StyledTable>
+    <span>{AppCaptions.AUTHOR}</span>
+    <TableHeaderTextWithIcon
+      onClick={() => {
+        rootStore.reposStore.setSortLowToHigh(
+          !rootStore.reposStore.sortLowToHigh
+        );
+      }}
+    >
+      {AppCaptions.STARS}
+      <Icon
+        sortLowToHigh={rootStore.reposStore.sortLowToHigh}
+        src={sortIcon}
+      ></Icon>
+    </TableHeaderTextWithIcon>
+  </StyledTable>
+));
 
 export default TableHeader;

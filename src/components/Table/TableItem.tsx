@@ -13,7 +13,7 @@ const Item = styled.li`
   border-bottom: 1px solid ${({ theme }) => theme.colors.primary};
   &:hover {
     background-color: ${({ theme }) => theme.colors.primaryLight};
-    color: ${({ theme }) => theme.colors.tertiary};
+    color: ${({ theme }) => theme.colors.secondary};
     border-radius: ${({ theme }) => theme.borderRadius};
     border-bottom: 1px solid ${({ theme }) => theme.colors.primaryLight};
   }
@@ -23,11 +23,10 @@ interface ITableItem {
   item: Repository;
 }
 
-const TableItem = ({ item }: ITableItem) => (
+const TableItem = React.memo(({ item }: ITableItem) => (
   <Item>
     <span>{item.author}</span>
     <span>{item.stars}</span>
   </Item>
-);
-
+));
 export default TableItem;

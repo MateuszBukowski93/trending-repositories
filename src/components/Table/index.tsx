@@ -1,12 +1,12 @@
-import React, { useEffect, useContext } from 'react';
-import { getRepos } from '../../api/getRepos';
-import TableItem from './TableItem';
-import styled from 'styled-components';
-import TableHeader from './TableHeader';
-import { observer } from 'mobx-react';
+import React, { useEffect } from 'react';
+import { observer } from 'mobx-react-lite';
 import { toJS } from 'mobx';
+import styled from 'styled-components';
+import TableItem from './TableItem';
+import TableHeader from './TableHeader';
 import { sortHighToLowFunc, sortLowToHighFunc } from '../../utilities/helpers';
-import { RootStoreContext } from '../../sotres/RootStore';
+import rootStore from '../../stores/RootStore';
+import { getRepos } from '../../api/getRepos';
 
 const StyledTable = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius};
@@ -20,16 +20,17 @@ const List = styled.ul`
 `;
 
 const Table = observer(() => {
-  const rootStore = useContext<RootStore>(RootStoreContext);
+  const since = rootStore.filtersStore.since;
+  const language = rootStore.filtersStore.language;
 
   useEffect(() => {
     getRepos(
       rootStore.filtersStore.language,
       rootStore.filtersStore.since
     ).then((repos: Repository[]) => {
-      rootStore.reposStore.repos = repos;
+      rootStore.reposStore.setRepos(repos);
     });
-  }, [rootStore.filtersStore.language, rootStore.filtersStore.since]);
+  }, [language, since]);
 
   return (
     <StyledTable>
@@ -37,7 +38,7 @@ const Table = observer(() => {
       <List>
         {toJS(rootStore.reposStore.repos)
           .sort(
-            rootStore.filtersStore.sortLowToHigh
+            rootStore.reposStore.sortLowToHigh
               ? sortLowToHighFunc
               : sortHighToLowFunc
           )

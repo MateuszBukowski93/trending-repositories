@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
+import { observer } from 'mobx-react-lite';
 import { getProgramingLanguages } from '../../api/getProgramingLanguages';
-import { StoreContext } from '../../store/RepositoriesStore';
+import rootStore from '../../stores/RootStore';
 
-const Select = () => {
-  const store = useContext<RepositoriesStore>(StoreContext);
-  const [language, setLanguage] = useState<string>(localStorage.language);
+const Select = observer(() => {
   const [languageOptions, setLanguageOptions] = useState<ProgramingLanguage[]>(
     []
   );
@@ -19,10 +18,9 @@ const Select = () => {
     <div>
       <select
         name='languages'
-        value={language}
+        value={rootStore.filtersStore.language}
         onChange={(e) => {
-          setLanguage(e.target.value);
-          store.updateLanguage(e.target.value);
+          rootStore.filtersStore.setLanguage(e.target.value);
         }}
       >
         {languageOptions.map((lang) => (
@@ -33,6 +31,6 @@ const Select = () => {
       </select>
     </div>
   );
-};
+});
 
 export default Select;

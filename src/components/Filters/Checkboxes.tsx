@@ -1,6 +1,8 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { StoreContext } from '../../store/RepositoriesStore';
+import React from 'react';
 import styled from 'styled-components';
+import { observer } from 'mobx-react-lite';
+import { DateRanges } from '../../constants';
+import rootStore from '../../stores/RootStore';
 
 const Label = styled.label`
   font-size: ${({ theme }) => theme.fontSize.medium};
@@ -27,51 +29,29 @@ const CheckboxesContainer = styled.div`
   }
 `;
 
-const Checkboxes = () => {
-  const store = useContext<RepositoriesStore>(StoreContext);
-  const [since, setSince] = useState<string>(localStorage.since);
-
-  useEffect(() => {
-    store.updateSince(since);
-  }, [since, store]);
+const Checkboxes = observer(() => {
+  const { DAILY, WEEKLY, MONTHLY } = DateRanges;
+  const DateRangesArray = [DAILY, WEEKLY, MONTHLY];
 
   return (
     <CheckboxesContainer>
-      <InputWithLabel>
-        <input
-          type='checkbox'
-          name='since'
-          id='daily'
-          value='daily'
-          checked={since === 'daily'}
-          onChange={(e) => setSince(e.target.value)}
-        />
-        <Label htmlFor='daily'>Daily</Label>
-      </InputWithLabel>
-      <InputWithLabel>
-        <input
-          type='checkbox'
-          name='since'
-          id='weekly'
-          value='weekly'
-          checked={since === 'weekly'}
-          onChange={(e) => setSince(e.target.value)}
-        />
-        <Label htmlFor='weekly'>Weekly</Label>
-      </InputWithLabel>
-      <InputWithLabel>
-        <input
-          type='checkbox'
-          name='since'
-          id='monthly'
-          value='monthly'
-          checked={since === 'monthly'}
-          onChange={(e) => setSince(e.target.value)}
-        />
-        <Label htmlFor='monthly'>Monthly</Label>
-      </InputWithLabel>
+      {DateRangesArray.map((DateRange) => (
+        <InputWithLabel>
+          <input
+            type='checkbox'
+            name={DateRange}
+            id={DateRange}
+            value={DateRange}
+            checked={DateRange === rootStore.filtersStore.since}
+            onChange={(e) => {
+              rootStore.filtersStore.setSince(e.target.value);
+            }}
+          />
+          <Label htmlFor={DateRange}>{DateRange.toUpperCase()}</Label>
+        </InputWithLabel>
+      ))}
     </CheckboxesContainer>
   );
-};
+});
 
 export default Checkboxes;

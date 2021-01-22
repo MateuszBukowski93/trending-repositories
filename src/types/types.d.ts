@@ -18,21 +18,6 @@ interface Repository {
   builtBy: RepoAuthor;
 }
 
-interface ReposStore {
-  repos: Repository[];
-}
-
-interface FilterStore {
-  language: string;
-  since: string;
-  sortLowToHigh: boolean;
-}
-
-interface RootStore {
-  filtersStore: FiltersStore;
-  reposStore: ReposStore;
-}
-
 interface ProgramingLanguage {
   urlParam: string;
   name: string;
